@@ -3,6 +3,7 @@ import operators
 
 class Expression:
     expr = ""
+    variables = []
 
     # construct prefix notation
     def __init__(self, string):
@@ -33,6 +34,7 @@ class Expression:
                 else:
                     # TODO; variables should be one letter
                     self.expr += w + " "
+                    self.variables.append(w)
 
         while len(stack) != 0:
             tc = stack.pop()
