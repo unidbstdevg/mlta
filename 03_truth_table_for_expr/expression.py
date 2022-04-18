@@ -1,5 +1,7 @@
 import operators
 
+CONSTANTS = ("0", "1")
+
 
 class Expression:
     expr = ""
@@ -44,7 +46,8 @@ class Expression:
                                 w))
 
                     self.expr += w + " "
-                    self.variables.add(w)
+                    if w not in CONSTANTS:
+                        self.variables.add(w)
 
         while len(stack) != 0:
             tc = stack.pop()
@@ -73,7 +76,7 @@ class Expression:
 
         words = final_expr.split(" ")
         for w in words:
-            if w in ("0", "1"):
+            if w in CONSTANTS:
                 operands.append(w)
             else:
                 operator = w
