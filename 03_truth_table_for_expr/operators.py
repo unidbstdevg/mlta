@@ -61,8 +61,7 @@ def apply_operator(operator_name, operands):
     truth_table = operators[operator_name]
     # TODO: check not null
 
-    # num = int(filter(str.isdigit, args))
-    num = int(operands, 2)
+    num = int("".join(operands), 2)
 
     return truth_table[num]
 
