@@ -41,6 +41,8 @@ class Expression:
 
             self.expr += tc + " "
 
+        # remove trailing space
+        self.expr = self.expr[:-1]
 
 class ExpressionParseError(Exception):
     pass
