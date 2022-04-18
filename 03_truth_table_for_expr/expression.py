@@ -31,8 +31,18 @@ class Expression:
             else:
                 if operators.is_operator(w) or w == "(":
                     stack.append(w)
+                elif w.isupper():
+                    raise ExpressionParseError(
+                        "Not an operator: \"{}\"".format(w))
                 else:
-                    # TODO; variables should be one letter
+                    if len(w) > 1:
+                        raise ExpressionParseError(
+                            "Variables should be one letter: \"{}\"".format(w))
+                    if not w.islower:
+                        raise ExpressionParseError(
+                            "Variables should be in lower case: \"{}\"".format(
+                                w))
+
                     self.expr += w + " "
                     self.variables.append(w)
 
@@ -45,6 +55,7 @@ class Expression:
 
         # remove trailing space
         self.expr = self.expr[:-1]
+
 
 class ExpressionParseError(Exception):
     pass
