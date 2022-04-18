@@ -54,3 +54,6 @@ def apply_operator(operator_name, operands):
     num = int(operands, 2)
 
     return truth_table[num]
+
+
+init_operators()
