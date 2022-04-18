@@ -56,6 +56,8 @@ class Expression:
         # remove trailing space
         self.expr = self.expr[:-1]
 
+        self.variables = sorted(self.variables)
+
     def _substitute_operands(self, row_set):
         res = self.expr
 
