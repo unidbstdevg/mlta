@@ -6,6 +6,8 @@ operators = {}
 # binary_operators[operator_name] = TruthTable
 # where TruthTable is tuple
 
+UNARY_OPERATORS = ["NOT"]
+
 BINARY_OPERATORS = [
     "CONSTANT_0", "AND", "GREATER", "OPERAND_1", "LESSER", "OPERAND_2", "XOR",
     "OR", "NOR", "EQ", "NOT_OPERAND_2", "REVERSE_IMPL", "NOT_OPERAND_1",
@@ -44,6 +46,15 @@ def init_operators():
 
 def is_operator(name):
     return name in operators.keys()
+
+
+def operands_count(operator):
+    if operator in UNARY_OPERATORS:
+        return 1
+    elif operator in BINARY_OPERATORS:
+        return 2
+
+    return None
 
 
 def apply_operator(operator_name, operands):
