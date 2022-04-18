@@ -1,3 +1,4 @@
+from binary_set import BinarySet
 from expression import Expression, ExpressionParseError
 
 expr = ""
@@ -14,5 +15,12 @@ while True:
 
 # print header of truth table
 SPAN_BEFORE_F = "  "
-print(" ".join(expr.variables) + SPAN_BEFORE_F + "f")
+print("\n" + " ".join(expr.variables) + SPAN_BEFORE_F + "f")
 
+row_set = BinarySet(len(expr.variables))
+while True:
+    f = expr.calc(tuple(row_set))
+    print(str(row_set) + SPAN_BEFORE_F + str(f))
+
+    if not row_set.next():
+        break
