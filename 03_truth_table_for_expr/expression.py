@@ -64,6 +64,38 @@ class Expression:
 
         return res
 
+    def calc(self, row_set):
+        final_expr = self._substitute_operands(row_set)
+
+        operands = []
+
+        words = final_expr.split(" ")
+        for w in words:
+            if w in ("0", "1"):
+                operands.append(w)
+            else:
+                operator = w
+
+                cur_operands = []
+                operands_count = operators.operands_count(operator)
+                for _ in range(operands_count):
+                    if len(operands) == 0:
+                        raise ExpressionEvalError("Wrong operands count")
+
+                    new_operand = operands.pop()
+                    cur_operands.append(new_operand)
+
+                f = str(operators.apply_operator(operator, cur_operands))
+
+                operands.append(f)
+
+        f = operands.pop()
+        return f
+
 
 class ExpressionParseError(Exception):
+    pass
+
+
+class ExpressionEvalError(Exception):
     pass
