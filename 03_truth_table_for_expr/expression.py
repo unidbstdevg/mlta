@@ -56,6 +56,14 @@ class Expression:
         # remove trailing space
         self.expr = self.expr[:-1]
 
+    def _substitute_operands(self, row_set):
+        res = self.expr
+
+        for var, val in zip(self.variables, row_set):
+            res = res.replace(var, str(val))
+
+        return res
+
 
 class ExpressionParseError(Exception):
     pass
