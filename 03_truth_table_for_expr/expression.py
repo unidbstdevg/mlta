@@ -33,9 +33,10 @@ class Expression:
             else:
                 if operators.is_operator(w) or w == "(":
                     stack.append(w)
-                elif w.isupper():
+                elif w.isupper() or (not w.isalpha() and w not in CONSTANTS):
                     raise ExpressionParseError(
-                        "Not an operator: \"{}\"".format(w))
+                        "Not an operator: \"{}\". Should be one of delcared in operators.py"
+                        .format(w))
                 else:
                     if len(w) > 1:
                         raise ExpressionParseError(
