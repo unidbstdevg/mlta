@@ -9,12 +9,12 @@ operators = {}
 UNARY_OPERATORS = ["NOT"]
 
 BINARY_OPERATORS = [
-    "CONSTANT_0", "AND", "GREATER", "OPERAND_1", "LESSER", "OPERAND_2", "XOR",
-    "OR", "NOR", "EQ", "NOT_OPERAND_2", "REVERSE_IMPL", "NOT_OPERAND_1",
-    "IMPL", "NAND", "CONSTANT_1"
+    "BINARY_CONSTANT_0", "AND", "GREATER", "OPERAND_1", "LESSER", "OPERAND_2",
+    "XOR", "OR", "NOR", "EQ", "NOT_OPERAND_2", "REVERSE_IMPL", "NOT_OPERAND_1",
+    "IMPL", "NAND", "BINARY_CONSTANT_1"
 ]
 # truth table            name
-# 0 0 0 0                CONSTANT_0
+# 0 0 0 0                BINARY_CONSTANT_0
 # 0 0 0 1                AND
 # 0 0 1 0                GREATER
 # 0 0 1 1                OPERAND_1
@@ -29,7 +29,7 @@ BINARY_OPERATORS = [
 # 1 1 0 0                NOT_OPERAND_1
 # 1 1 0 1                IMPL
 # 1 1 1 0                NAND
-# 1 1 1 1                CONSTANT_1
+# 1 1 1 1                BINARY_CONSTANT_1
 
 
 def init_operators():
