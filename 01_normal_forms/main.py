@@ -38,3 +38,5 @@ counts = {
 }
 winner = sorted(counts.items(), key=lambda x: x[1])[0]
 print("{} have minimal binary operators count: {}".format(winner[0], winner[1]))
+
+input()

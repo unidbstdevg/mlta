@@ -27,3 +27,5 @@ while True:
 
     if not row_set.next():
         break
+
+input()
