@@ -6,7 +6,12 @@ operators = {}
 # binary_operators[operator_name] = TruthTable
 # where TruthTable is tuple
 
-UNARY_OPERATORS = ["NOT"]
+UNARY_OPERATORS = ["UNARY_CONSTANT_0", "NOP", "NOT", "UNARY_CONSTANT_1"]
+# truth table            name
+# 0 0                    UNARY_CONSTANT_0
+# 0 1                    NOP
+# 1 0                    NOT
+# 1 1                    UNARY_CONSTANT_1
 
 BINARY_OPERATORS = [
     "BINARY_CONSTANT_0", "AND", "GREATER", "OPERAND_1", "LESSER", "OPERAND_2",
@@ -33,7 +38,9 @@ BINARY_OPERATORS = [
 
 
 def init_operators():
-    unary_operators = {"NOT": (1, 0)}
+    # construct unary operators
+    unary_operators_tables = make_full_list_of_binary_sets(2)
+    unary_operators = dict(zip(UNARY_OPERATORS, unary_operators_tables))
 
     # construct binary operators
     binary_operators_tables = make_full_list_of_binary_sets(4)
