@@ -4,11 +4,12 @@ CONSTANTS = ("0", "1")
 
 
 class Expression:
-    expr = ""
-    variables = set()
 
     # construct prefix notation
     def __init__(self, string):
+        self.expr = ""
+        self.variables = set()
+
         # hack to interprete parenthesis as separate word
         string = string.replace("(", " ( ")
         string = string.replace(")", " ) ")
