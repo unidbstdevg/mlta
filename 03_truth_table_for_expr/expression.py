@@ -36,9 +36,6 @@ class Expression:
                         break
 
                     self.expr += tc + " "
-
-                if len(stack) == 0:
-                    raise ExpressionParseError("Missed opening parenthesis")
             else:
                 if operators.is_operator(w):
                     stack.append(w)
