@@ -101,6 +101,9 @@ class Expression:
 
                 operands.append(f)
 
+        if (len(operands) > 1):
+            raise ExpressionEvalError("Are you missed operator?")
+
         f = operands.pop()
         return f
 
