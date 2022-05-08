@@ -8,8 +8,10 @@ expr = ""
 
 while True:
     inp = input("Type expression: ")
+
     try:
         expr = Expression(inp)
+
         if len(expr.variables) < 1:
             print("Parse error: Expression must have at least one variable")
             continue
@@ -20,23 +22,22 @@ while True:
         except ExpressionEvalError as e:
             print("Eval error:", e)
             continue
-
-        print("Postfix notation:", expr.expr)
-        break
     except ExpressionParseError as e:
         print("Parse error:", e)
         continue
 
-# print header of truth table
-SPAN_BEFORE_F = "  "
-print("\n" + " ".join(expr.variables) + SPAN_BEFORE_F + "F")
+    print("Postfix notation:", expr.expr)
 
-row_set = BinarySet(len(expr.variables))
-while True:
-    f = expr.calc(tuple(row_set))
-    print(str(row_set) + SPAN_BEFORE_F + str(f))
+    # print header of truth table
+    SPAN_BEFORE_F = "  "
+    print("\n" + " ".join(expr.variables) + SPAN_BEFORE_F + "F")
 
-    if not row_set.next():
-        break
+    row_set = BinarySet(len(expr.variables))
+    while True:
+        f = expr.calc(tuple(row_set))
+        print(str(row_set) + SPAN_BEFORE_F + str(f))
 
-input()
+        if not row_set.next():
+            break
+
+    print()
