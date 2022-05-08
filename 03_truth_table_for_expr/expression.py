@@ -25,6 +25,10 @@ class Expression:
                 self.expr += w + " "
                 continue
 
+            if w == "(":
+                stack.append(w)
+                continue
+
             if w == ")":
                 while len(stack) != 0:
                     tc = stack.pop()
@@ -36,7 +40,7 @@ class Expression:
                 if len(stack) == 0:
                     raise ExpressionParseError("Missed opening parenthesis")
             else:
-                if operators.is_operator(w) or w == "(":
+                if operators.is_operator(w):
                     stack.append(w)
                 elif w.isupper() or not w.isalpha():
                     raise ExpressionParseError(
