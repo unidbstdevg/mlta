@@ -88,6 +88,9 @@ class Expression:
         for w in words:
             if w in CONSTANTS:
                 operands.append(w)
+            elif w == "":
+                print("Unreachable reached: w == \"\"")
+                exit(1)
             else:
                 operator = w
 
@@ -105,8 +108,12 @@ class Expression:
 
                 operands.append(f)
 
-        if (len(operands) > 1):
+        if len(operands) > 1:
             raise ExpressionEvalError("Are you missed operator?")
+
+        if len(operands) == 0:
+            print("Unreachable reached: operands.empty()")
+            exit(1)
 
         f = operands.pop()
         return f
