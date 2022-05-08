@@ -86,7 +86,8 @@ class Expression:
                 operands_count = operators.operands_count(operator)
                 for _ in range(operands_count):
                     if len(operands) == 0:
-                        raise ExpressionEvalError("Wrong operands count")
+                        raise ExpressionEvalError(
+                            "Wrong operands count for operator " + operator)
 
                     new_operand = operands.pop()
                     cur_operands.append(new_operand)
