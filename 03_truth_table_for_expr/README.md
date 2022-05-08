@@ -7,3 +7,5 @@ Operations priority defines only using parenthesis. If parenthesis was not
 used, then expression evaluates starting from end.
 
 For list of operators see file operators.py
+
+To exit type one of: quit, exit, q

@@ -7,7 +7,13 @@ from expression import Expression, ExpressionParseError, ExpressionEvalError
 expr = ""
 
 while True:
+    print()
+
     inp = input("Type expression: ")
+
+    if inp in ("exit", "quit", "q"):
+        print("Got '" + inp + "'. Goodbye!")
+        exit()
 
     try:
         expr = Expression(inp)
@@ -39,5 +45,3 @@ while True:
 
         if not row_set.next():
             break
-
-    print()
