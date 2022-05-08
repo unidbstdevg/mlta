@@ -25,6 +25,10 @@ class Expression:
                 self.expr += w + " "
                 continue
 
+            if operators.is_operator(w) and operators.operands_count(w) == 1:
+                stack.append(w)
+                continue
+
             if w == "(":
                 stack.append(w)
                 continue

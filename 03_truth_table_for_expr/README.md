@@ -6,6 +6,7 @@ All operators is in upper case.
 Operations priority defines only using parenthesis. If parenthesis was not
 used, then expression evaluates starting from end.
 
-For list of operators see file operators.py
+For list of operators see file operators.py.
+All unary operators are prefix operators.
 
 To exit type one of: quit, exit, q
