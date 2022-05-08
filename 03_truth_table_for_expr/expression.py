@@ -21,6 +21,10 @@ class Expression:
             if w == "":
                 continue
 
+            if w in CONSTANTS:
+                self.expr += w + " "
+                continue
+
             if w == ")":
                 while len(stack) != 0:
                     tc = stack.pop()
@@ -34,7 +38,7 @@ class Expression:
             else:
                 if operators.is_operator(w) or w == "(":
                     stack.append(w)
-                elif w.isupper() or (not w.isalpha() and w not in CONSTANTS):
+                elif w.isupper() or not w.isalpha():
                     raise ExpressionParseError(
                         "Not an operator: \"{}\". Should be one of delcared in operators.py"
                         .format(w))
@@ -48,8 +52,7 @@ class Expression:
                                 w))
 
                     self.expr += w + " "
-                    if w not in CONSTANTS:
-                        self.variables.add(w)
+                    self.variables.add(w)
 
         while len(stack) != 0:
             tc = stack.pop()
