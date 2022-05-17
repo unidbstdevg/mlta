@@ -42,6 +42,19 @@ class Expression:
                     self.expr += tc + " "
             else:
                 if operators.is_operator(w):
+                    priority = operators.get_binary_operator_priority(w)
+                    while len(stack) != 0:
+                        t = stack.pop()
+                        if t != "(":
+                            t_priority = \
+                                operators.get_binary_operator_priority(t)
+                            if t_priority >= priority:
+                                self.expr += t + " "
+                                continue
+
+                        stack.append(t)
+                        break
+
                     stack.append(w)
                 elif w.isupper() or not w.isalpha():
                     raise ExpressionParseError(
