@@ -13,11 +13,24 @@ UNARY_OPERATORS = ["UNARY_CONSTANT_0", "NOP", "NOT", "UNARY_CONSTANT_1"]
 # 1 0                    NOT
 # 1 1                    UNARY_CONSTANT_1
 
-BINARY_OPERATORS = [
-    "BINARY_CONSTANT_0", "AND", "GREATER", "OPERAND_1", "LESSER", "OPERAND_2",
-    "XOR", "OR", "NOR", "EQ", "NOT_OPERAND_2", "REVERSE_IMPL", "NOT_OPERAND_1",
-    "IMPL", "NAND", "BINARY_CONSTANT_1"
-]
+BINARY_OPERATORS_WITH_PRIORITY = {
+    "BINARY_CONSTANT_0": 0,
+    "AND": 4,
+    "GREATER": 0,
+    "OPERAND_1": 0,
+    "LESSER": 0,
+    "OPERAND_2": 0,
+    "XOR": 2,
+    "OR": 3,
+    "NOR": 3,
+    "EQ": 2,
+    "NOT_OPERAND_2": 0,
+    "REVERSE_IMPL": 0,
+    "NOT_OPERAND_1": 0,
+    "IMPL": 1,
+    "NAND": 4,
+    "BINARY_CONSTANT_1": 0
+}
 # truth table            name
 # 0 0 0 0                BINARY_CONSTANT_0
 # 0 0 0 1                AND
@@ -44,7 +57,8 @@ def init_operators():
 
     # construct binary operators
     binary_operators_tables = make_full_list_of_binary_sets(4)
-    binary_operators = dict(zip(BINARY_OPERATORS, binary_operators_tables))
+    binary_operators = dict(
+        zip(BINARY_OPERATORS_WITH_PRIORITY.keys(), binary_operators_tables))
 
     global operators
     operators.update(unary_operators)
@@ -58,10 +72,14 @@ def is_operator(name):
 def operands_count(operator):
     if operator in UNARY_OPERATORS:
         return 1
-    elif operator in BINARY_OPERATORS:
+    elif operator in BINARY_OPERATORS_WITH_PRIORITY:
         return 2
 
     return None
+
+
+def get_binary_operator_priority(name):
+    return BINARY_OPERATORS_WITH_PRIORITY[name]
 
 
 def apply_operator(operator_name, operands):
