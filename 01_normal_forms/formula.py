@@ -104,6 +104,7 @@ class Formula:
                 break
 
         terms = make_terms_by_masks(terms_masks, t.header())
+        terms = list(map(lambda x: str.join("*", list(x)), terms))
 
         return terms
 
