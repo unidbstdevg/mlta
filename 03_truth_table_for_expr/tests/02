@@ -1,0 +1,3 @@
+a AND b OR c
+a OR b AND c
+a OR b AND c XOR d
