@@ -10,10 +10,11 @@ class TruthTableFillUi:
     def __init__(self):
         self.results = []
         self.buf = " "
+        self.size = -1
 
     def ask(self):
-        size = self.ask_size()
-        self.s = BinarySet(size)
+        self.ask_size()
+        self.s = BinarySet(self.size)
 
         self.buf = " ".join(self.s.header()) + "  f\n"
         while True:
@@ -24,6 +25,8 @@ class TruthTableFillUi:
 
             if not self.s.next():
                 break
+
+        print()
 
     def ask_size(self):
         N = -1
@@ -42,7 +45,7 @@ class TruthTableFillUi:
                 print("[error] Please type number")
                 continue
 
-        return N
+        self.size = N
 
     def ask_fill_f(self):
         f = input()
