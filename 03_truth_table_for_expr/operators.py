@@ -78,7 +78,11 @@ def operands_count(operator):
     return None
 
 
-def get_binary_operator_priority(name):
+def get_operator_priority(name):
+    # all unary operators have priority over binary operators
+    if name in UNARY_OPERATORS:
+        return 100
+
     return BINARY_OPERATORS_WITH_PRIORITY[name]
 
 
