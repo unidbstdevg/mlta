@@ -49,6 +49,27 @@ BINARY_OPERATORS_WITH_PRIORITY = {
 # 1 1 1 0                NAND
 # 1 1 1 1                BINARY_CONSTANT_1
 
+OPERATORS_ALIASES = {
+    "NOT": ["!"],
+    "AND": ["*", "&"],
+    "OR": ["+", "V", "U"],
+    "XOR": ["^"],
+    "IMPL": ["->", "=>"],
+    "REVERSE_IMPL": ["<-", "<="],
+    "EQ": ["=", "=="],
+}
+
+
+def get_raw_operator_name(name):
+    if name in UNARY_OPERATORS or name in BINARY_OPERATORS_WITH_PRIORITY:
+        return name
+
+    for raw_name, aliases in OPERATORS_ALIASES.items():
+        if name in aliases:
+            return raw_name
+
+    return None
+
 
 def init_operators():
     # construct unary operators
@@ -66,10 +87,13 @@ def init_operators():
 
 
 def is_operator(name):
+    name = get_raw_operator_name(name)
     return name in operators.keys()
 
 
 def operands_count(operator):
+    operator = get_raw_operator_name(operator)
+
     if operator in UNARY_OPERATORS:
         return 1
     elif operator in BINARY_OPERATORS_WITH_PRIORITY:
@@ -79,6 +103,8 @@ def operands_count(operator):
 
 
 def get_operator_priority(name):
+    name = get_raw_operator_name(name)
+
     # all unary operators have priority over binary operators
     if name in UNARY_OPERATORS:
         return 100
@@ -87,6 +113,8 @@ def get_operator_priority(name):
 
 
 def apply_operator(operator_name, operands):
+    operator_name = get_raw_operator_name(operator_name)
+
     truth_table = operators[operator_name]
     # TODO: check not null
 
