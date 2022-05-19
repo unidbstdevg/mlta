@@ -40,37 +40,39 @@ class Expression:
                         break
 
                     self.expr += tc + " "
-            else:
-                if operators.is_operator(w):
-                    priority = operators.get_operator_priority(w)
-                    while len(stack) != 0:
-                        t = stack.pop()
-                        if t != "(":
-                            t_priority = \
-                                operators.get_operator_priority(t)
-                            if t_priority >= priority:
-                                self.expr += t + " "
-                                continue
+                continue
 
-                        stack.append(t)
-                        break
+            if operators.is_operator(w):
+                priority = operators.get_operator_priority(w)
+                while len(stack) != 0:
+                    t = stack.pop()
+                    if t != "(":
+                        t_priority = \
+                            operators.get_operator_priority(t)
+                        if t_priority >= priority:
+                            self.expr += t + " "
+                            continue
 
-                    stack.append(w)
-                elif w.isupper() or not w.isalpha():
-                    raise ExpressionParseError(
-                        "Not an operator: \"{}\". Should be one of delcared in operators.py"
-                        .format(w))
-                else:
-                    if len(w) > 1:
-                        raise ExpressionParseError(
-                            "Variables should be one letter: \"{}\"".format(w))
-                    if not w.islower:
-                        raise ExpressionParseError(
-                            "Variables should be in lower case: \"{}\"".format(
-                                w))
+                    stack.append(t)
+                    break
 
-                    self.expr += w + " "
-                    self.variables.add(w)
+                stack.append(w)
+                continue
+
+            if w.isupper() or not w.isalpha():
+                raise ExpressionParseError(
+                    "Not an operator: \"{}\". Should be one of delcared in operators.py"
+                    .format(w))
+
+            if len(w) > 1:
+                raise ExpressionParseError(
+                    "Variables should be one letter: \"{}\"".format(w))
+            if not w.islower:
+                raise ExpressionParseError(
+                    "Variables should be in lower case: \"{}\"".format(w))
+
+            self.expr += w + " "
+            self.variables.add(w)
 
         while len(stack) != 0:
             tc = stack.pop()
