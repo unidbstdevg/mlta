@@ -1,5 +1,5 @@
 # allow to use navigation keys in input()
-import readline
+import readline  # noqa: F401
 
 from binary_set import BinarySet
 from expression import Expression, ExpressionParseError, ExpressionEvalError
