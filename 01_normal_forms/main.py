@@ -2,21 +2,7 @@ from formula import Formula
 from user_input import TruthTableFillUi
 from utils import count_binary_operators
 
-N = -1
-while True:
-    ans = input("Number of variables: ")
-    try:
-        N = int(ans)
-        if N < 1 or N > 7:
-            print("[error] Number of variables should be between 1 and 7")
-            continue
-
-        break
-    except ValueError:
-        print("[error] Please type number")
-        continue
-
-a = TruthTableFillUi(N)
+a = TruthTableFillUi()
 a.ask()
 print()
 

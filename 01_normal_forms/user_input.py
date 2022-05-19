@@ -2,16 +2,20 @@ from os import system
 from binary_set import BinarySet
 
 ALPHABET = ('0', '1')
+MAX_VARS_COUNT = 7
 
 
 class TruthTableFillUi:
 
-    def __init__(self, size):
+    def __init__(self):
         self.results = []
-        self.s = BinarySet(size)
-        self.buf = " ".join(self.s.header()) + "  f\n"
+        self.buf = " "
 
     def ask(self):
+        size = self.ask_size()
+        self.s = BinarySet(size)
+
+        self.buf = " ".join(self.s.header()) + "  f\n"
         while True:
             self.buf += str(self.s) + "  "
             self.redraw()
@@ -20,6 +24,25 @@ class TruthTableFillUi:
 
             if not self.s.next():
                 break
+
+    def ask_size(self):
+        N = -1
+        while True:
+            ans = input("Number of variables: ")
+            try:
+                N = int(ans)
+                if N < 1 or N > MAX_VARS_COUNT:
+                    print(
+                        "[error] Number of variables should be between 1 and "
+                        + str(MAX_VARS_COUNT))
+                    continue
+
+                break
+            except ValueError:
+                print("[error] Please type number")
+                continue
+
+        return N
 
     def ask_fill_f(self):
         f = input()
