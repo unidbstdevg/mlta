@@ -10,9 +10,11 @@ class Expression:
         self.expr = ""
         self.variables = set()
 
-        # hack to interprete parenthesis as separate word
+        # hack to interpret parenthesis as separate word
         string = string.replace("(", " ( ")
         string = string.replace(")", " ) ")
+        # hack to interpret '!' as separate word
+        string = string.replace("!", " ! ")
 
         stack = []
 
