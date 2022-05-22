@@ -63,7 +63,7 @@ class Expression:
 
             if w.isupper() or not w.isalpha():
                 raise ExpressionParseError(
-                    "Not an operator: \"{}\". Should be one of delcared in operators.py"
+                    "Not an operator: \"{}\". Type 'help' (or '?') for list of operators"
                     .format(w))
 
             if len(w) > 1:

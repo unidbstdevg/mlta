@@ -123,4 +123,18 @@ def apply_operator(operator_name, operands):
     return truth_table[num]
 
 
+def print_operators_list():
+    categories = {
+        "Unary operators:": UNARY_OPERATORS,
+        "Binary operators:": BINARY_OPERATORS_WITH_PRIORITY.keys()
+    }
+    for category, opers in categories.items():
+        print("\n" + category)
+        for x in opers:
+            s = "\t" + x
+            if x in OPERATORS_ALIASES:
+                s += " (aliases: " + ", ".join(OPERATORS_ALIASES[x]) + ")"
+            print(s)
+
+
 init_operators()

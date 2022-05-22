@@ -3,6 +3,7 @@ import readline  # noqa: F401
 
 from binary_set import BinarySet
 from expression import Expression, ExpressionParseError, ExpressionEvalError
+from operators import print_operators_list
 
 expr = ""
 
@@ -14,6 +15,9 @@ while True:
     if inp in ("exit", "quit", "q"):
         print("Got '" + inp + "'. Goodbye!")
         exit()
+    elif inp in ("help", "?"):
+        print_operators_list()
+        continue
 
     try:
         expr = Expression(inp)
