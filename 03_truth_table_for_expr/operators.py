@@ -124,6 +124,7 @@ def apply_operator(operator_name, operands):
 
 
 def print_operators_list():
+    print("Format: truth_table operator_name (aliases)")
     categories = {
         "Unary operators:": UNARY_OPERATORS,
         "Binary operators:": BINARY_OPERATORS_WITH_PRIORITY.keys()
@@ -131,7 +132,7 @@ def print_operators_list():
     for category, opers in categories.items():
         print("\n" + category)
         for x in opers:
-            s = "\t" + x
+            s = "\t" + "".join(str(v) for v in operators[x]) + " " + x
             if x in OPERATORS_ALIASES:
                 s += " (aliases: " + ", ".join(OPERATORS_ALIASES[x]) + ")"
             print(s)
