@@ -26,6 +26,10 @@ class Expression:
             if w in CONSTANTS:
                 self.expr += w + " "
                 continue
+            if w.isdigit():
+                raise ExpressionParseError(
+                    "Invalid constant: \"{}\". Valid constants are 0 and 1.".
+                    format(w))
 
             if operators.is_operator(w) and operators.operands_count(w) == 1:
                 stack.append(w)
