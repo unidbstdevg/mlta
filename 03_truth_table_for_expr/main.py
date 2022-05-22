@@ -26,6 +26,8 @@ while True:
             print("Parse error: Expression must have at least one variable")
             continue
 
+        print("Postfix notation:", expr.expr)
+
         try:
             row_set = (0 for x in range(len(expr.variables)))
             expr.calc(row_set)
@@ -35,8 +37,6 @@ while True:
     except ExpressionParseError as e:
         print("Parse error:", e)
         continue
-
-    print("Postfix notation:", expr.expr)
 
     # print header of truth table
     SPAN_BEFORE_F = "  "
