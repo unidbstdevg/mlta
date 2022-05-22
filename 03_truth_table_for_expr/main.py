@@ -8,7 +8,7 @@ from operators import print_operators_list
 expr = ""
 
 while True:
-    print()
+    print("-" * 60)
 
     inp = input("Type expression: ")
 
