@@ -1,4 +1,5 @@
 import operators
+import re
 
 CONSTANTS = ("0", "1")
 
@@ -10,11 +11,10 @@ class Expression:
         self.expr = ""
         self.variables = set()
 
-        # hack to interpret parenthesis as separate word
-        string = string.replace("(", " ( ")
-        string = string.replace(")", " ) ")
-        # hack to interpret '!' as separate word
-        string = string.replace("!", " ! ")
+        # hack to interpret parenthesis, lower case letters (aka variables),
+        # numbers (aka constants) and '!' symbol as separate words, even if
+        # they are written without any spaces around
+        string = re.sub(r'([a-z0-9\)\(\!])', r' \1 ', string)
 
         stack = []
 
