@@ -116,7 +116,8 @@ class Expression:
                 for _ in range(operands_count):
                     if len(operands) == 0:
                         raise ExpressionEvalError(
-                            "Wrong operands count for operator " + operator)
+                            "Not enough operands for operator \"{}\"".format(
+                                operator))
 
                     new_operand = operands.pop()
                     cur_operands.append(new_operand)
