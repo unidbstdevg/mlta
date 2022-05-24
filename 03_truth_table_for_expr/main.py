@@ -15,7 +15,7 @@ while True:
     if inp in ("exit", "quit", "q"):
         print("Got '" + inp + "'. Goodbye!")
         exit()
-    elif inp in ("help", "?"):
+    elif inp in ("operators", "list"):
         print_operators_list()
         continue
 
