@@ -14,7 +14,7 @@ class Expression:
         # hack to interpret parenthesis, lower case letters (aka variables),
         # numbers (aka constants) and '!' symbol as separate words, even if
         # they are written without any spaces around
-        string = re.sub(r'([a-z0-9\)\(\!])', r' \1 ', string)
+        string = re.sub(r'([^_]|^)(?!.*_)([a-z0-9\)\(\!])', r'\1 \2 ', string)
 
         stack = []
 
