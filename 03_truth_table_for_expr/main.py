@@ -5,6 +5,30 @@ from binary_set import BinarySet
 from expression import Expression, ExpressionParseError, ExpressionEvalError
 from operators import print_operators_list
 
+HELP_TEXT = """Expression format:
+1. Expressions sets in infix notation (unary operators use prefix notation).
+2. All variables should be one lower-case letter.
+3. Operators are either UPPER case words, or special symbols defined as aliases.
+   (for list of operators (and aliases) type 'operators' or 'list')
+
+Some operations have priorities over others. For more details type 'priority'.
+In short: there used standard and common order for most used operations.
+
+To exit type one of: quit, exit, q"""
+
+PRIORITY_TEXT = """Operations priority (in order from higher to lower):
+1. parenthesis
+2. unary operators
+3. AND, NAND
+4. OR, NOR
+5. XOR, EQ
+6. IMPL
+7. all remaining binary operators"""
+
+print(
+    """This program prints truth table for logical expression entered by user.
+Type 'help' or '?' for instructions and details on how to use the program.""")
+
 expr = ""
 
 while True:
@@ -15,6 +39,12 @@ while True:
     if inp in ("exit", "quit", "q"):
         print("Got '" + inp + "'. Goodbye!")
         exit()
+    elif inp in ("help", "?"):
+        print(HELP_TEXT)
+        continue
+    elif inp in ("priority"):
+        print(PRIORITY_TEXT)
+        continue
     elif inp in ("operators", "list"):
         print_operators_list()
         continue
