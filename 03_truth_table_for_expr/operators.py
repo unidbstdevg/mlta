@@ -115,6 +115,9 @@ def get_operator_priority(name):
 def apply_operator(operator_name, operands):
     operator_name = get_raw_operator_name(operator_name)
 
+    # reverse operands order (to match real operands order)
+    operands.reverse()
+
     truth_table = operators[operator_name]
     # TODO: check not null
 
